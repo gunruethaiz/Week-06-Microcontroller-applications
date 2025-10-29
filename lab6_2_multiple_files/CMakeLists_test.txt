@@ -1,0 +1,36 @@
+cmake_minimum_required(VERSION 3.16)
+
+set(CMAKE_C_COMPILER gcc)
+set(CMAKE_CXX_COMPILER g++)
+
+project(lab6_2_test C)
+
+# Step 1: Main + Sensor only
+add_executable(step1 
+    main/lab6_2_step1.c
+    main/sensor.c
+)
+
+# Step 2: Main + Sensor + Display  
+add_executable(step2
+    main/lab6_2_step2.c
+    main/sensor.c
+    main/display.c
+)
+
+# Step 3: Main + Sensor + Display + LED
+add_executable(step3
+    main/lab6_2_step3.c
+    main/sensor.c
+    main/display.c
+    main/led.c
+)
+
+target_include_directories(step1 PRIVATE main)
+target_include_directories(step2 PRIVATE main)
+target_include_directories(step3 PRIVATE main)
+
+# Add ESP32-like definitions for compilation
+target_compile_definitions(step1 PRIVATE ESP32=1)
+target_compile_definitions(step2 PRIVATE ESP32=1)
+target_compile_definitions(step3 PRIVATE ESP32=1)
